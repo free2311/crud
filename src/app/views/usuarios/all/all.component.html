@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <button class="btn btn-primary" (click)="toggleLiveDemo()"> Crear</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Accion</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let item of data " class="text-center">
+                        <td>{{item.user}}</td>
+                        <td><button class="btn btn-primary me-1" (click)="delete(item.user)"> eliminar</button> <button
+                                class="btn btn-primary" (click)="open(content, item.user)"> Actualizar</button></td>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+    <c-modal-header>
+        <h5 class="text-center">Crear usuario</h5>
+        <button (click)="toggleLiveDemo()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        <form [formGroup]="userform">
+            <div class="row">
+
+                <div class="col-6">
+
+                    <input type="text" class="form-control" placeholder="usuario" formControlName="usr_name"
+                        aria-describedby="basic-addon1">
+
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control" placeholder="contraseña" formControlName="password"
+                        aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </form>
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="toggleLiveDemo()" cButton color="secondary">
+            cerrar
+        </button>
+        <button cButton color="primary" (click)="crearUsuario()">Crear Usuario</button>
+    </c-modal-footer>
+</c-modal>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Actualizar usuario</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="updateform">
+            <div class="row">
+
+                <div class="col-6">
+
+                    <input type="text" class="form-control" placeholder="usuario" formControlName="usr_name"
+                        aria-describedby="basic-addon1">
+
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control" placeholder="contraseña" formControlName="password"
+                        aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="update()">Save</button>
+    </div>
+</ng-template>
