@@ -20,10 +20,16 @@ export class AllComponent {
   userform = new FormGroup({
     usr_name: new FormControl(''),
     password: new FormControl(''),
+    cedula: new FormControl(''),
+    nombre: new FormControl(''),
+    correo: new FormControl(''),
   });
   updateform = new FormGroup({
     usr_name: new FormControl(''),
     password: new FormControl(''),
+    cedula: new FormControl(''),
+    nombre: new FormControl(''),
+    correo: new FormControl(''),
   });
   data: any = [];
 
@@ -84,9 +90,19 @@ export class AllComponent {
     );
   }
 
-  open(content: TemplateRef<any>, usuario: any) {
-    this.updateform.patchValue({ usr_name: usuario });
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  open(content: TemplateRef<any>, data: any) {
+    console.log(data);
+
+    this.updateform.patchValue({ usr_name: data.user });
+    this.updateform.patchValue({ password: data.pass });
+    this.updateform.patchValue({ cedula: data.cedula });
+    this.updateform.patchValue({ nombre: data.nombre });
+    this.updateform.patchValue({ correo: data.correo });
+
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'lg',
+    });
   }
 
   update() {

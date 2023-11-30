@@ -11,6 +11,9 @@
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Usuario</th>
+                        <th scope="col">cedula</th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">correo</th>
                         <th scope="col">Accion</th>
 
                     </tr>
@@ -18,8 +21,11 @@
                 <tbody>
                     <tr *ngFor=" let item of data " class="text-center">
                         <td>{{item.user}}</td>
+                        <td>{{item.cedula}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.correo}}</td>
                         <td><button class="btn btn-primary me-1" (click)="delete(item.user)"> eliminar</button> <button
-                                class="btn btn-primary" (click)="open(content, item.user)"> Actualizar</button></td>
+                                class="btn btn-primary" (click)="open(content, item)"> Actualizar</button></td>
 
 
                     </tr>
@@ -40,16 +46,40 @@
         <form [formGroup]="userform">
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">usuario</label>
 
                     <input type="text" class="form-control" placeholder="usuario" formControlName="usr_name"
                         aria-describedby="basic-addon1">
 
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">contraseña</label>
+
                     <input type="text" class="form-control" placeholder="contraseña" formControlName="password"
                         aria-describedby="basic-addon1">
                 </div>
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">cedula</label>
+
+                    <input type="text" class="form-control" placeholder="cedula" formControlName="cedula"
+                        aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label for="basic-url" class="form-label">nombre</label>
+
+                    <input type="text" class="form-control" placeholder="nombre" formControlName="nombre"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="col-6">
+                    <label for="basic-url" class="form-label">correo</label>
+                    <input type="text" class="form-control" placeholder="correo" formControlName="correo"
+                        aria-describedby="basic-addon1">
+                </div>
+
             </div>
         </form>
     </c-modal-body>
@@ -69,21 +99,44 @@
     <div class="modal-body">
         <form [formGroup]="updateform">
             <div class="row">
-
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">usuario</label>
 
                     <input type="text" class="form-control" placeholder="usuario" formControlName="usr_name"
                         aria-describedby="basic-addon1">
 
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">contraseña</label>
+
                     <input type="text" class="form-control" placeholder="contraseña" formControlName="password"
                         aria-describedby="basic-addon1">
                 </div>
+                <div class="col-4">
+                    <label for="basic-url" class="form-label">cedula</label>
+
+                    <input type="text" class="form-control" placeholder="cedula" formControlName="cedula"
+                        aria-describedby="basic-addon1">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="basic-url" class="form-label">nombre</label>
+
+                    <input type="text" class="form-control" placeholder="nombre" formControlName="nombre"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="col-6">
+                    <label for="basic-url" class="form-label">correo</label>
+                    <input type="text" class="form-control" placeholder="correo" formControlName="correo"
+                        aria-describedby="basic-addon1">
+                </div>
+
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="update()">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="update()">Guardar</button>
     </div>
 </ng-template>
